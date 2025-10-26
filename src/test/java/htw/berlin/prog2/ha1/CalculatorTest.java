@@ -125,6 +125,7 @@ class CalculatorTest {
     @Test 
     @DisplayName("shoud display number of multiplication with percentage key")
     void testMultipleOfPercentage(){ 
+        Calculator calc = new Calculator();
 
         calc.pressDigitKey(5);
         calc.pressUnaryOperationKey("%");
@@ -141,6 +142,7 @@ class CalculatorTest {
     @Test
     @DisplayName("should display negative percentage")
     void testNegativePercentage(){
+        Calculator calc = new Calculator();
 
         calc.pressDigitKey(5);
         calc.pressNegativeKey();
@@ -151,5 +153,21 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+
+    @Test //added "buggfixes"
+    @DisplayName("should display error for inversion of zero")
+    void testInversionOfZero(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
