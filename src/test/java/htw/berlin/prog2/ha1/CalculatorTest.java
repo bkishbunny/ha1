@@ -104,7 +104,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    @Test
+    @Test //added "bugfixes"
     @DisplayName("should repeat last operation when pressing equals-key multiple times")
     void testRepeatedEqualsKey(){
         Calculator calc = new Calculator();
@@ -121,6 +121,35 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    
+    @Test 
+    @DisplayName("shoud display number of multiplication with percentage key")
+    void testMultipleOfPercentage(){ 
 
+        calc.pressDigitKey(5);
+        calc.pressUnaryOperationKey("%");
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+
+        String expected = "1.05";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display negative percentage")
+    void testNegativePercentage(){
+
+        calc.pressDigitKey(5);
+        calc.pressNegativeKey();
+        calc.pressUnaryOperationKey("%");
+
+        String expected = "-0.05";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
