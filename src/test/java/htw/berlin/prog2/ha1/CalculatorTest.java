@@ -103,6 +103,24 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-    
+
+    @Test
+    @DisplayName("should repeat last operation when pressing equals-key multiple times")
+    void testRepeatedEqualsKey(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+        
+        String expected = "3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
 }
 
